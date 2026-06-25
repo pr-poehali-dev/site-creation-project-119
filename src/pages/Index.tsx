@@ -427,13 +427,12 @@ const Index = () => {
             </div>
             <div className="md:col-span-2 border-2 border-ink overflow-hidden" style={{height: '400px'}}>
               <iframe
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=г.+Сочи,+ул.+Горького+56А&language=ru"
+                src="https://yandex.ru/map-widget/v1/?text=г.+Сочи,+ул.+Горького+56А&z=16&l=map"
                 width="100%"
                 height="100%"
                 style={{border: 0}}
                 allowFullScreen
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
                 title="Мы на карте"
               />
             </div>
