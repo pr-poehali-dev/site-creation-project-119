@@ -359,6 +359,30 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Partners block */}
+      <section className="border-t-2 border-ink bg-gray-50 py-12">
+        <div className="container">
+          <h2 className="font-display font-700 uppercase text-2xl mb-6">Партнёры — гостиничные чеки в других городах:</h2>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm mb-0">
+            {[
+              { city: 'Сочи', url: 'https://cheki-sochi.ru/' },
+              { city: 'Анапа', url: 'https://chekgarant.online' },
+              { city: 'Новороссийск', url: 'https://kassovie-cheki01.ru' },
+              { city: 'Геленджик', url: 'https://cheki-gelendzhik.ru' },
+              { city: 'Анапа', url: 'https://kassovie-cheki01.online/' },
+              { city: 'Крымск', url: 'https://cheki-gelendzhik.ru/cheki-krimsk' },
+              { city: 'Туапсе', url: 'https://cheki-sochi.ru/cheki-tuapse' },
+            ].map((p) => (
+              <li key={p.url}>
+                <a href={p.url} target="_blank" rel="noopener" className="text-electric hover:underline">
+                  Гостиничные чеки в {p.city}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* SEO links block */}
       <section className="border-t-2 border-ink bg-gray-50 py-12">
         <div className="container">
