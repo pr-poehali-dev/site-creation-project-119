@@ -402,6 +402,45 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Map */}
+      <section className="border-t-2 border-ink">
+        <div className="container py-12">
+          <h2 className="font-display font-700 uppercase text-3xl mb-8">Мы на карте</h2>
+          <div className="grid md:grid-cols-3 gap-8 items-start">
+            <div className="space-y-3">
+              <div>
+                <p className="font-display uppercase text-xs tracking-wide text-ink/50 mb-1">Адрес</p>
+                <p className="font-semibold">г. Сочи, ул. Горького 56А</p>
+              </div>
+              <div>
+                <p className="font-display uppercase text-xs tracking-wide text-ink/50 mb-1">Телефон</p>
+                <a href="tel:+79184641800" className="font-semibold hover:text-electric">+7 (918) 464-18-00</a>
+              </div>
+              <div>
+                <p className="font-display uppercase text-xs tracking-wide text-ink/50 mb-1">Email</p>
+                <a href="mailto:6456609@list.ru" className="font-semibold hover:text-electric">6456609@list.ru</a>
+              </div>
+              <div>
+                <p className="font-display uppercase text-xs tracking-wide text-ink/50 mb-1">Режим работы</p>
+                <p className="font-semibold">Ежедневно 09:00 — 21:00</p>
+              </div>
+            </div>
+            <div className="md:col-span-2 border-2 border-ink overflow-hidden" style={{height: '400px'}}>
+              <iframe
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY&q=г.+Сочи,+ул.+Горького+56А&language=ru"
+                width="100%"
+                height="100%"
+                style={{border: 0}}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Мы на карте"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer id="contacts" className="bg-ink text-white border-t-2 border-acid pt-16 pb-8 grain">
         <div className="container grid md:grid-cols-4 gap-10 mb-12">
