@@ -345,24 +345,6 @@ const CityPage = () => {
         </div>
       </section>
 
-      {/* Map */}
-      <section id="contacts" className="border-y-2 border-ink">
-        <div className="container py-12">
-          <h2 className="font-display font-700 uppercase text-3xl mb-6">Мы на карте</h2>
-          <div className="border-2 border-ink overflow-hidden" style={{height: '380px'}}>
-            <iframe
-              src={`https://yandex.ru/map-widget/v1/?text=${encodeURIComponent(city.address)}&z=16&l=map`}
-              width="100%"
-              height="100%"
-              style={{border: 0}}
-              allowFullScreen
-              loading="lazy"
-              title={`Мы на карте — ${city.address}`}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Delivery */}
       <section id="delivery" className="bg-ink text-white py-20 grain">
         <div className="container grid md:grid-cols-3 gap-8">
