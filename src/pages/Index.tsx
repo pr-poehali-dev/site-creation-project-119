@@ -16,12 +16,12 @@ const nav = [
 ];
 
 const services = [
-  { icon: 'Hotel', title: 'Гостиничные чеки', desc: 'Со всеми печатями, подписями и реквизитами отеля' },
-  { icon: 'Receipt', title: 'Кассовые чеки', desc: 'Отчётные документы по форме Госстандарта' },
-  { icon: 'UtensilsCrossed', title: 'Ресторанные чеки', desc: 'Подтверждение расходов на питание в командировке' },
-  { icon: 'Fuel', title: 'Чеки АЗС', desc: 'Документы на топливо для авансового отчёта' },
-  { icon: 'FileText', title: 'Счета-фактуры', desc: 'Закрывающие документы для бухгалтерии' },
-  { icon: 'Hammer', title: 'Стройматериалы', desc: 'Чеки и акты выполненных работ' },
+  { icon: 'Hotel', title: 'Гостиничные чеки', desc: 'Со всеми печатями, подписями и реквизитами отеля', img: 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/899d90d0-40bf-4fa5-92fe-479f5e0dd529.jpg' },
+  { icon: 'Receipt', title: 'Кассовые чеки', desc: 'Отчётные документы по форме Госстандарта', img: 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/7be50e11-801c-4bc1-b643-05355193cc59.jpg' },
+  { icon: 'UtensilsCrossed', title: 'Ресторанные чеки', desc: 'Подтверждение расходов на питание в командировке', img: 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/a4b34cfd-6d49-45b8-8596-4b2e6252f601.jpg' },
+  { icon: 'Fuel', title: 'Чеки АЗС', desc: 'Документы на топливо для авансового отчёта', img: 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/bbcc149a-573d-40eb-843e-d79fda601d9b.jpg' },
+  { icon: 'FileText', title: 'Счета-фактуры', desc: 'Закрывающие документы для бухгалтерии', img: 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/703727ce-9c72-432d-b7d3-f6839a0e49a5.jpg' },
+  { icon: 'Hammer', title: 'Стройматериалы', desc: 'Чеки и акты выполненных работ', img: 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/76b33621-1bb6-4d65-bcc9-7a34cfcea8ee.jpg' },
 ];
 
 const steps = [
@@ -170,13 +170,18 @@ const Index = () => {
           <h2 className="font-display font-700 uppercase text-4xl md:text-6xl mb-12">Что мы делаем</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s) => (
-              <Card key={s.title} className="bg-white border-2 border-ink/10 rounded-none p-7 hover:border-electric hover:-translate-y-1 transition-all group">
-                <div className="flex items-center justify-between mb-6">
-                  <Icon name={s.icon} size={32} className="text-electric" />
-                  <Icon name="ArrowUpRight" size={22} className="text-ink/20 group-hover:text-electric transition-colors" />
+              <Card key={s.title} className="bg-white border-2 border-ink/10 rounded-none overflow-hidden hover:border-electric hover:-translate-y-1 transition-all group">
+                <div className="overflow-hidden h-44 bg-gray-50">
+                  <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <h3 className="font-display uppercase text-xl mb-2 text-ink">{s.title}</h3>
-                <p className="text-sm text-ink/50">{s.desc}</p>
+                <div className="p-7">
+                  <div className="flex items-center justify-between mb-3">
+                    <Icon name={s.icon} size={26} className="text-electric" />
+                    <Icon name="ArrowUpRight" size={20} className="text-ink/20 group-hover:text-electric transition-colors" />
+                  </div>
+                  <h3 className="font-display uppercase text-xl mb-2 text-ink">{s.title}</h3>
+                  <p className="text-sm text-ink/50">{s.desc}</p>
+                </div>
               </Card>
             ))}
           </div>
