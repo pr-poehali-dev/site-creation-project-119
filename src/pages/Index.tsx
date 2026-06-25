@@ -372,6 +372,35 @@ const Index = () => {
           <span>Документы изготавливаются по форме Госстандарта</span>
         </div>
       </footer>
+
+      {/* Floating buttons */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a
+          href="tel:+79184641800"
+          className="w-14 h-14 bg-electric text-white flex items-center justify-center shadow-lg hover:bg-ink transition-colors"
+          title="Позвонить"
+        >
+          <Icon name="Phone" size={22} />
+        </a>
+        <a
+          href="https://wa.me/79184641800"
+          target="_blank"
+          rel="noreferrer"
+          className="w-14 h-14 bg-green-500 text-white flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors"
+          title="WhatsApp"
+        >
+          <Icon name="MessageCircle" size={22} />
+        </a>
+        <a
+          href="https://t.me/+79184641800"
+          target="_blank"
+          rel="noreferrer"
+          className="w-14 h-14 bg-sky-500 text-white flex items-center justify-center shadow-lg hover:bg-sky-600 transition-colors"
+          title="Telegram"
+        >
+          <Icon name="Send" size={22} />
+        </a>
+      </div>
     </div>
   );
 };
