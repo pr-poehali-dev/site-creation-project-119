@@ -126,16 +126,6 @@ const Index = () => {
             <p className="text-lg max-w-md mb-8 text-ink/70">
               Чеки гостиницы в Сочи и Краснодарском крае — со всеми печатями, подписями и реквизитами отеля. Законно, по форме Госстандарта.
             </p>
-            <div className="flex flex-wrap gap-4 mb-10">
-              <div className="border-2 border-ink px-5 py-3">
-                <div className="font-display text-3xl font-700 text-electric">5%</div>
-                <div className="text-xs uppercase tracking-wide text-ink/60">от суммы чека</div>
-              </div>
-              <div className="border-2 border-ink px-5 py-3">
-                <div className="font-display text-3xl font-700">30–100 <span className="text-base">тыс ₽</span></div>
-                <div className="text-xs uppercase tracking-wide text-ink/60">в одном чеке</div>
-              </div>
-            </div>
             <div className="flex flex-wrap gap-4">
               <Button asChild className="bg-ink hover:bg-electric text-white rounded-none h-12 px-8 font-display uppercase tracking-wide">
                 <a href="#order">Оформить заказ</a>
