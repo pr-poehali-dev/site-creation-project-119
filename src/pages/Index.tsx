@@ -61,8 +61,8 @@ const Index = () => {
       <div className="bg-ink text-acid text-sm">
         <div className="container flex items-center justify-between py-2 font-display tracking-wide">
           <span className="flex items-center gap-2"><Icon name="MapPin" size={14} /> Сочи и Краснодарский край</span>
-          <a href="tel:+79214216103" className="hover:text-white transition-colors flex items-center gap-2">
-            <Icon name="Phone" size={14} /> +7-921-421-61-03
+          <a href="tel:+79184641800" className="hover:text-white transition-colors flex items-center gap-2">
+            <Icon name="Phone" size={14} /> +7 (918) 464-18-00
           </a>
         </div>
       </div>
@@ -208,7 +208,7 @@ const Index = () => {
               Заполните контактные данные — и мы свяжемся с вами в течение 15 минут для бесплатной консультации.
             </p>
             <div className="space-y-3 font-display uppercase text-sm tracking-wide">
-              <a href="tel:+79214216103" className="flex items-center gap-3"><Icon name="Phone" size={18} className="text-acid" /> +7-921-421-61-03</a>
+              <a href="tel:+79184641800" className="flex items-center gap-3"><Icon name="Phone" size={18} className="text-acid" /> +7 (918) 464-18-00</a>
               <a href="mailto:checkone@checki.top" className="flex items-center gap-3"><Icon name="Mail" size={18} className="text-acid" /> checkone@checki.top</a>
             </div>
           </div>
@@ -308,15 +308,19 @@ const Index = () => {
           <div>
             <h4 className="font-display uppercase text-acid mb-4">Контакты</h4>
             <ul className="space-y-2 text-sm text-white/60">
-              <li><a href="tel:+79214216103" className="hover:text-white">+7-921-421-61-03</a></li>
+              <li><a href="tel:+79184641800" className="hover:text-white">+7 (918) 464-18-00</a></li>
               <li><a href="mailto:checkone@checki.top" className="hover:text-white">checkone@checki.top</a></li>
             </ul>
             <div className="flex gap-3 mt-4">
-              {['MessageCircle', 'Send', 'Phone'].map((ic) => (
-                <a key={ic} href="#" className="border border-white/30 w-10 h-10 flex items-center justify-center hover:bg-acid hover:text-ink hover:border-acid transition-colors">
-                  <Icon name={ic} size={18} />
-                </a>
-              ))}
+              <a href="https://wa.me/79184641800" target="_blank" rel="noreferrer" className="border border-white/30 w-10 h-10 flex items-center justify-center hover:bg-acid hover:text-ink hover:border-acid transition-colors">
+                <Icon name="MessageCircle" size={18} />
+              </a>
+              <a href="https://t.me/+79184641800" target="_blank" rel="noreferrer" className="border border-white/30 w-10 h-10 flex items-center justify-center hover:bg-acid hover:text-ink hover:border-acid transition-colors">
+                <Icon name="Send" size={18} />
+              </a>
+              <a href="tel:+79184641800" className="border border-white/30 w-10 h-10 flex items-center justify-center hover:bg-acid hover:text-ink hover:border-acid transition-colors">
+                <Icon name="Phone" size={18} />
+              </a>
             </div>
           </div>
         </div>
