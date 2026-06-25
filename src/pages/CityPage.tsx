@@ -387,6 +387,49 @@ const CityPage = () => {
       </section>
 
       {/* Footer */}
+      {/* Partners block */}
+      <section className="border-t-2 border-ink bg-gray-50 py-12">
+        <div className="container">
+          <h2 className="font-display font-700 uppercase text-2xl mb-6">Партнёры — гостиничные чеки в других городах:</h2>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm mb-0">
+            {[
+              { city: 'Сочи', url: 'https://cheki-sochi.ru/' },
+              { city: 'Анапа', url: 'https://chekgarant.online' },
+              { city: 'Новороссийск', url: 'https://kassovie-cheki01.ru' },
+              { city: 'Геленджик', url: 'https://cheki-gelendzhik.ru' },
+              { city: 'Анапа', url: 'https://kassovie-cheki01.online/' },
+              { city: 'Крымск', url: 'https://cheki-gelendzhik.ru/cheki-krimsk' },
+              { city: 'Туапсе', url: 'https://cheki-sochi.ru/cheki-tuapse' },
+            ].map((p) => (
+              <li key={p.url}>
+                <a href={p.url} target="_blank" rel="noopener" className="text-electric hover:underline">
+                  Гостиничные чеки в {p.city}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* SEO links block */}
+      <section className="border-t-2 border-ink bg-gray-50 py-12">
+        <div className="container">
+          <h2 className="font-display font-700 uppercase text-2xl mb-8">У нас Вы сможете заказать:</h2>
+          <ul className="space-y-3 text-sm text-ink/70 leading-relaxed">
+            <li><strong className="text-ink">Гостиничный чек купить с подтверждением</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске в короткие сроки с доставкой.</li>
+            <li><strong className="text-ink">Товарные чеки купить</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске в короткие сроки с доставкой.</li>
+            <li><strong className="text-ink">Кассовые чеки купить</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске вместе с товарными в сжатые сроки.</li>
+            <li><strong className="text-ink">Договор об оказании гостиничных услуг</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске за сутки, кассовый чек.</li>
+            <li><strong className="text-ink">Акт выполненных работ</strong> в паре к гостиничному чеку — купить в Краснодаре задним числом.</li>
+            <li><strong className="text-ink">Счёт-фактура купить</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске вместе с актом выполненных работ.</li>
+            <li><strong className="text-ink">Чеки на бензин купить АЗС ГСМ</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске в короткие сроки с доставкой.</li>
+            <li><strong className="text-ink">Чек на гостиницу купить</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске в короткие сроки с доставкой по городу.</li>
+            <li><strong className="text-ink">Ресторанные чеки купить</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Армавире, Ейске, Сочи, Адлере, Геленджике, Кропоткине, Новороссийске в короткие сроки с доставкой и записью блюд.</li>
+            <li><strong className="text-ink">Чеки на стройматериалы купить</strong> в Краснодаре, Анапе, Славянске-на-Кубани, Сочи, Адлере, Геленджике, Новороссийске в короткие сроки.</li>
+          </ul>
+        </div>
+      </section>
+
       <footer id="contacts" className="bg-ink text-white border-t-2 border-acid pt-16 pb-8 grain">
         <div className="container grid md:grid-cols-3 gap-10 mb-12">
           <div>
