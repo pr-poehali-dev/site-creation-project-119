@@ -89,9 +89,9 @@ const Index = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-[#FAF9F2]/90 backdrop-blur border-b-2 border-ink">
         <div className="container flex items-center justify-between py-4">
-          <a href="#" className="font-display text-2xl font-700 flex items-center gap-2">
+          <a href="#" className="font-display text-xl font-700 flex items-center gap-2">
             <span className="bg-electric text-white px-2 py-1 leading-none">ЧЕКИ</span>
-            <span className="text-electric">1</span>
+            <span className="text-ink">С ПОДТВЕРЖДЕНИЕМ</span>
           </a>
           <nav className="hidden lg:flex items-center gap-7 font-display text-sm uppercase tracking-wide">
             {nav.map((n) => (
@@ -311,9 +311,9 @@ const Index = () => {
       <footer id="contacts" className="bg-ink text-white border-t-2 border-acid pt-16 pb-8 grain">
         <div className="container grid md:grid-cols-4 gap-10 mb-12">
           <div>
-            <div className="font-display text-2xl font-700 flex items-center gap-2 mb-4">
+            <div className="font-display text-xl font-700 flex items-center gap-2 mb-4">
               <span className="bg-electric text-white px-2 py-1 leading-none">ЧЕКИ</span>
-              <span className="text-acid">1</span>
+              <span className="text-white">С ПОДТВЕРЖДЕНИЕМ</span>
             </div>
             <p className="text-white/50 text-sm">Гостиничные и отчётные чеки в Сочи — официально, со всеми реквизитами.</p>
           </div>
