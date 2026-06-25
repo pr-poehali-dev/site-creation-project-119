@@ -304,6 +304,70 @@ const CityPage = () => {
         </div>
       </section>
 
+      {/* Contacts + Map */}
+      <section id="contacts" className="border-b-2 border-ink bg-[#FAF9F2]">
+        <div className="container py-16">
+          <div className="inline-flex items-center gap-2 bg-acid text-ink px-4 py-1.5 font-display uppercase text-xs tracking-widest mb-6">
+            <Icon name="MapPin" size={14} /> Мы на карте
+          </div>
+          <h2 className="font-display font-700 uppercase text-4xl md:text-5xl mb-10">Наш офис {city.nameIn}</h2>
+          <div className="grid lg:grid-cols-2 gap-0 border-2 border-ink">
+            <div className="p-10 flex flex-col justify-between gap-8 border-b-2 lg:border-b-0 lg:border-r-2 border-ink">
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-electric flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="MapPin" size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="font-display uppercase text-xs tracking-widest text-ink/50 mb-1">Адрес</div>
+                    <div className="font-display text-lg">{city.busStationAddress}</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-electric flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="Phone" size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="font-display uppercase text-xs tracking-widest text-ink/50 mb-1">Телефон</div>
+                    <a href="tel:+79184641800" className="font-display text-lg hover:text-electric transition-colors">+7 (918) 464-18-00</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-electric flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="Mail" size={18} className="text-white" />
+                  </div>
+                  <div>
+                    <div className="font-display uppercase text-xs tracking-widest text-ink/50 mb-1">Email</div>
+                    <a href="mailto:6456609@list.ru" className="font-display text-lg hover:text-electric transition-colors">6456609@list.ru</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-acid flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Icon name="Clock" size={18} className="text-ink" />
+                  </div>
+                  <div>
+                    <div className="font-display uppercase text-xs tracking-widest text-ink/50 mb-1">График работы</div>
+                    <div className="font-display text-lg">Пн–Пт: 9:00 – 20:00</div>
+                    <div className="font-display text-lg">Сб–Вс: 10:00 – 18:00</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style={{minHeight: '420px'}}>
+              <iframe
+                src={`https://yandex.ru/map-widget/v1/?text=${encodeURIComponent(city.busStationAddress)}&z=16&l=map`}
+                width="100%"
+                height="100%"
+                style={{border: 0, minHeight: '420px', display: 'block'}}
+                allowFullScreen
+                loading="lazy"
+                title={`Автовокзал ${city.name}`}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Order form */}
       <section id="order" className="bg-electric text-white py-20 grain border-y-2 border-ink">
         <div className="container grid lg:grid-cols-2 gap-12 items-center">
