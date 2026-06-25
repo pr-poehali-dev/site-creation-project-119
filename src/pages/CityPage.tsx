@@ -1,21 +1,11 @@
 import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 import { cities } from '@/data/cities';
-
-const HERO_IMG = 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/bucket/79023b31-0fda-4e3f-b0be-d4da30b69963.png';
-
-const nav = [
-  { label: 'О нас', href: '#about' },
-  { label: 'Услуги', href: '#services' },
-  { label: 'Как работаем', href: '#steps' },
-  { label: 'Доставка и оплата', href: '#delivery' },
-  { label: 'Блог', href: '#blog' },
-  { label: 'Контакты', href: '#contacts' },
-];
 
 const services = [
   { icon: 'Hotel', title: 'Гостиничные чеки', desc: 'Со всеми печатями, подписями и реквизитами отеля', img: 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/899d90d0-40bf-4fa5-92fe-479f5e0dd529.jpg' },
@@ -42,20 +32,34 @@ const advantages = [
   { icon: 'Zap', title: 'Быстрое изготовление', desc: 'Делаем документ в кратчайшие сроки и отправляем экспресс-доставкой.' },
 ];
 
-const blog = [
-  { tag: 'Командировки', title: 'Зачем нужны гостиничные чеки', desc: 'Компания обязана возмещать затраты сотрудника в командировке. Чеки — это отчётный документ.' },
-  { tag: 'Форс-мажор', title: 'Что делать, если потеряли чек', desc: 'Восстановить документ в отеле получается не всегда — рассказываем про оптимальный вариант.' },
-  { tag: 'Цены', title: 'От чего зависит стоимость', desc: 'Индивидуальный расчёт по цели, выбранной гостинице и срокам с момента утери.' },
+const nav = [
+  { label: 'О нас', href: '#about' },
+  { label: 'Услуги', href: '#services' },
+  { label: 'Как работаем', href: '#steps' },
+  { label: 'Доставка и оплата', href: '#delivery' },
+  { label: 'Контакты', href: '#contacts' },
 ];
-
-
 
 const EMAIL_URL = 'https://functions.poehali.dev/c20e61cd-6d1d-488b-8ae0-5ff678e6ac49';
 
-const Index = () => {
+const CityPage = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const city = cities.find((c) => c.slug === slug);
+
   const [form, setForm] = useState({ name: '', phone: '', email: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle');
   const [activeService, setActiveService] = useState<typeof services[0] | null>(null);
+
+  if (!city) {
+    return (
+      <div className="min-h-screen flex items-center justify-center font-body">
+        <div className="text-center">
+          <h1 className="font-display text-4xl mb-4">Город не найден</h1>
+          <Link to="/" className="text-electric underline">На главную</Link>
+        </div>
+      </div>
+    );
+  }
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,17 +68,11 @@ const Index = () => {
       const res = await fetch(EMAIL_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, city: city.name }),
       });
-      if (res.ok) {
-        setStatus('ok');
-        setForm({ name: '', phone: '', email: '' });
-      } else {
-        setStatus('error');
-      }
-    } catch {
-      setStatus('error');
-    }
+      if (res.ok) { setStatus('ok'); setForm({ name: '', phone: '', email: '' }); }
+      else setStatus('error');
+    } catch { setStatus('error'); }
   };
 
   return (
@@ -82,7 +80,7 @@ const Index = () => {
       {/* Top bar */}
       <div className="bg-ink text-acid text-sm">
         <div className="container flex items-center justify-between py-2 font-display tracking-wide">
-          <span className="flex items-center gap-2"><Icon name="MapPin" size={14} /> г.Сочи, ул.Горького 56А</span>
+          <span className="flex items-center gap-2"><Icon name="MapPin" size={14} /> {city.address}</span>
           <a href="tel:+79184641800" className="hover:text-white transition-colors flex items-center gap-2">
             <Icon name="Phone" size={14} /> +7 (918) 464-18-00
           </a>
@@ -92,10 +90,10 @@ const Index = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-[#FAF9F2]/90 backdrop-blur border-b-2 border-ink">
         <div className="container flex items-center justify-between py-4">
-          <a href="#" className="font-display text-xl font-700 flex items-center gap-2">
+          <Link to="/" className="font-display text-xl font-700 flex items-center gap-2">
             <span className="bg-electric text-white px-2 py-1 leading-none">ЧЕКИ</span>
             <span className="text-ink">С ПОДТВЕРЖДЕНИЕМ</span>
-          </a>
+          </Link>
           <nav className="hidden lg:flex items-center gap-7 font-display text-sm uppercase tracking-wide">
             {nav.map((n) => (
               <a key={n.label} href={n.href} className="hover:text-electric transition-colors relative group">
@@ -116,15 +114,15 @@ const Index = () => {
         <div className="container grid lg:grid-cols-2 gap-10 items-center py-16 lg:py-24 relative">
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-acid text-ink px-4 py-1.5 font-display uppercase text-xs tracking-widest mb-6">
-              <Icon name="Sparkles" size={14} /> Сочи · официально
+              <Icon name="Sparkles" size={14} /> {city.name} · официально
             </div>
             <h1 className="font-display font-700 uppercase leading-[0.9] text-6xl md:text-8xl mb-6">
               Гостиничные<br />
               <span className="text-electric">чеки</span><br />
-              <span className="text-red-600">в Сочи</span>
+              <span className="text-red-600">{city.nameIn}</span>
             </h1>
             <p className="text-lg max-w-md mb-8 text-ink/70">
-              Чеки гостиницы в Сочи и Краснодарском крае — со всеми печатями, подписями и реквизитами отеля. Законно, по форме Госстандарта.
+              Чеки гостиницы {city.nameIn} — со всеми печатями, подписями и реквизитами отеля. Законно, по форме Госстандарта.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <div className="border-2 border-ink px-5 py-3">
@@ -147,7 +145,7 @@ const Index = () => {
           </div>
           <div className="relative animate-scale-in">
             <div className="absolute -inset-4 border-2 border-electric rotate-3" />
-            <img src={HERO_IMG} alt="Гостиничный чек" className="relative w-full object-cover border-2 border-ink animate-float" />
+            <img src={city.img} alt={`Гостиничные чеки ${city.nameIn}`} className="relative w-full object-cover border-2 border-ink animate-float" />
           </div>
         </div>
       </section>
@@ -205,7 +203,6 @@ const Index = () => {
               </Card>
             ))}
           </div>
-
           <Dialog open={!!activeService} onOpenChange={() => setActiveService(null)}>
             <DialogContent className="max-w-lg p-0 rounded-none border-2 border-ink overflow-hidden">
               {activeService && (
@@ -252,7 +249,7 @@ const Index = () => {
             <div className="space-y-3 font-display uppercase text-sm tracking-wide">
               <a href="tel:+79184641800" className="flex items-center gap-3"><Icon name="Phone" size={18} className="text-acid" /> +7 (918) 464-18-00</a>
               <a href="mailto:6456609@list.ru" className="flex items-center gap-3"><Icon name="Mail" size={18} className="text-acid" /> 6456609@list.ru</a>
-              <span className="flex items-center gap-3"><Icon name="MapPin" size={18} className="text-acid" /> г.Сочи, ул.Горького 56А</span>
+              <span className="flex items-center gap-3"><Icon name="MapPin" size={18} className="text-acid" /> {city.address}</span>
             </div>
           </div>
           <form onSubmit={submit} className="bg-[#FAF9F2] text-ink p-8 border-2 border-ink">
@@ -280,24 +277,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Blog */}
-      <section id="blog" className="container py-20">
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-          <h2 className="font-display font-700 uppercase text-4xl md:text-6xl">Блог</h2>
-          <a href="#" className="font-display uppercase text-sm tracking-wide flex items-center gap-2 hover:text-electric">Все статьи <Icon name="ArrowRight" size={16} /></a>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {blog.map((b) => (
-            <article key={b.title} className="border-2 border-ink p-7 hover:bg-acid transition-colors group cursor-pointer">
-              <span className="inline-block bg-electric text-white px-3 py-1 font-display uppercase text-xs tracking-wide mb-5">{b.tag}</span>
-              <h3 className="font-display uppercase text-xl mb-3">{b.title}</h3>
-              <p className="text-sm text-ink/60 mb-5">{b.desc}</p>
-              <span className="font-display uppercase text-sm flex items-center gap-2 group-hover:gap-3 transition-all">Читать <Icon name="ArrowUpRight" size={16} /></span>
-            </article>
-          ))}
-        </div>
-      </section>
-
       {/* Delivery */}
       <section id="delivery" className="bg-ink text-white py-20 grain">
         <div className="container grid md:grid-cols-3 gap-8">
@@ -315,33 +294,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Cities */}
-      <section className="container py-20">
-        <h2 className="font-display font-700 uppercase text-3xl md:text-5xl mb-8">Работаем по Краснодарскому краю и регионам РФ</h2>
-        <div className="flex flex-wrap gap-3">
-          {cities.map((c) => (
-            <a
-              key={c.slug}
-              href={`/city/${c.slug}`}
-              target="_blank"
-              rel="noreferrer"
-              className="border-2 border-ink px-4 py-2 font-display uppercase text-sm hover:bg-electric hover:text-white hover:border-electric transition-colors"
-            >
-              {c.name}
-            </a>
-          ))}
-        </div>
-      </section>
-
       {/* Footer */}
       <footer id="contacts" className="bg-ink text-white border-t-2 border-acid pt-16 pb-8 grain">
-        <div className="container grid md:grid-cols-4 gap-10 mb-12">
+        <div className="container grid md:grid-cols-3 gap-10 mb-12">
           <div>
             <div className="font-display text-xl font-700 flex items-center gap-2 mb-4">
               <span className="bg-electric text-white px-2 py-1 leading-none">ЧЕКИ</span>
               <span className="text-white">С ПОДТВЕРЖДЕНИЕМ</span>
             </div>
-            <p className="text-white/50 text-sm">Гостиничные и отчётные чеки в Сочи — официально, со всеми реквизитами.</p>
+            <p className="text-white/50 text-sm">Гостиничные и отчётные чеки {city.nameIn} — официально, со всеми реквизитами.</p>
           </div>
           <div>
             <h4 className="font-display uppercase text-acid mb-4">Каталог</h4>
@@ -350,20 +311,11 @@ const Index = () => {
             </ul>
           </div>
           <div>
-            <h4 className="font-display uppercase text-acid mb-4">Информация</h4>
-            <ul className="space-y-2 text-sm text-white/60">
-              <li><a href="#delivery" className="hover:text-white">Доставка и оплата</a></li>
-              <li><a href="#about" className="hover:text-white">О нас</a></li>
-              <li><a href="#blog" className="hover:text-white">Блог</a></li>
-              <li><a href="#contacts" className="hover:text-white">Контакты</a></li>
-            </ul>
-          </div>
-          <div>
             <h4 className="font-display uppercase text-acid mb-4">Контакты</h4>
             <ul className="space-y-2 text-sm text-white/60">
               <li><a href="tel:+79184641800" className="hover:text-white">+7 (918) 464-18-00</a></li>
               <li><a href="mailto:6456609@list.ru" className="hover:text-white">6456609@list.ru</a></li>
-              <li className="flex items-center gap-2"><Icon name="MapPin" size={14} /> г.Сочи, ул.Горького 56А</li>
+              <li className="flex items-center gap-2"><Icon name="MapPin" size={14} /> {city.address}</li>
             </ul>
             <div className="flex gap-3 mt-4">
               <a href="https://wa.me/79184641800" target="_blank" rel="noreferrer" className="border border-white/30 w-10 h-10 flex items-center justify-center hover:bg-acid hover:text-ink hover:border-acid transition-colors">
@@ -379,36 +331,20 @@ const Index = () => {
           </div>
         </div>
         <div className="container border-t border-white/10 pt-6 text-xs text-white/40 flex flex-wrap justify-between gap-2">
-          <span>© 2026 Чеки1 · Сочи</span>
+          <span>© 2026 Чеки с подтверждением · {city.name}</span>
           <span>Документы изготавливаются по форме Госстандарта</span>
         </div>
       </footer>
 
       {/* Floating buttons */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
-        <a
-          href="tel:+79184641800"
-          className="group w-14 h-14 bg-electric text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 hover:shadow-electric/40 transition-all duration-300"
-          title="Позвонить"
-        >
+        <a href="tel:+79184641800" className="w-14 h-14 bg-electric text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300" title="Позвонить">
           <Icon name="Phone" size={22} />
         </a>
-        <a
-          href="https://wa.me/79184641800"
-          target="_blank"
-          rel="noreferrer"
-          className="group w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 hover:shadow-green-400/40 transition-all duration-300"
-          title="WhatsApp"
-        >
+        <a href="https://wa.me/79184641800" target="_blank" rel="noreferrer" className="w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300" title="WhatsApp">
           <Icon name="MessageCircle" size={22} />
         </a>
-        <a
-          href="https://t.me/+79184641800"
-          target="_blank"
-          rel="noreferrer"
-          className="group w-14 h-14 bg-sky-500 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 hover:shadow-sky-400/40 transition-all duration-300"
-          title="Telegram"
-        >
+        <a href="https://t.me/+79184641800" target="_blank" rel="noreferrer" className="w-14 h-14 bg-sky-500 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300" title="Telegram">
           <Icon name="Send" size={22} />
         </a>
       </div>
@@ -416,4 +352,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default CityPage;
