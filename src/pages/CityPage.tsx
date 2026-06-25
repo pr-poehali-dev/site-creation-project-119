@@ -77,13 +77,34 @@ const CityPage = () => {
 
     const schema = {
       '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
-      name: `Гостиничные чеки ${city.nameIn}`,
-      description: desc,
-      telephone: '+79184641800',
-      email: '6456609@list.ru',
-      address: { '@type': 'PostalAddress', streetAddress: city.address, addressLocality: city.name, addressRegion: 'Краснодарский край', addressCountry: 'RU' },
-      url: `https://cheki-sochi.ru/city/${city.slug}`,
+      '@graph': [
+        {
+          '@type': 'LocalBusiness',
+          name: `Гостиничные чеки ${city.nameIn}`,
+          description: desc,
+          telephone: '+79184641800',
+          email: '6456609@list.ru',
+          address: { '@type': 'PostalAddress', streetAddress: city.address, addressLocality: city.name, addressRegion: 'Краснодарский край', addressCountry: 'RU' },
+          url: `https://cheki-sochi.ru/city/${city.slug}`,
+        },
+        {
+          '@type': 'FAQPage',
+          mainEntity: [
+            { '@type': 'Question', name: `Как получить гостиничные чеки ${city.nameIn}?`, acceptedAnswer: { '@type': 'Answer', text: `Позвоните нам по телефону +7 (918) 464-18-00 или заполните форму на сайте. Мы изготовим официальные гостиничные чеки ${city.nameIn} со всеми печатями и реквизитами по форме Госстандарта Минфина РФ.` } },
+            { '@type': 'Question', name: 'Законно ли это?', acceptedAnswer: { '@type': 'Answer', text: 'Да. Документы оформляются от реальных гостиниц по утверждённой форме Минфина РФ. Бухгалтерия может сделать запрос в гостиницу и получить подтверждение проживания.' } },
+            { '@type': 'Question', name: 'Сколько времени занимает изготовление?', acceptedAnswer: { '@type': 'Answer', text: 'От нескольких часов до 1 рабочего дня. После проверки документы отправляем экспресс-доставкой по всей России.' } },
+            { '@type': 'Question', name: `Для каких гостиниц ${city.nameIn} можно оформить чеки?`, acceptedAnswer: { '@type': 'Answer', text: `Для любой гостиницы ${city.nameIn}, России и стран СНГ. Подберём оптимальный вариант под вашу ценовую категорию и пожелания.` } },
+            { '@type': 'Question', name: 'Что входит в отчётные документы о проживании?', acceptedAnswer: { '@type': 'Answer', text: 'Гостиничный чек по форме 3-Г, кассовый чек или квитанция, все печати, подписи и реквизиты отеля.' } },
+          ],
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://cheki-sochi.ru/' },
+            { '@type': 'ListItem', position: 2, name: `Гостиничные чеки ${city.nameIn}`, item: `https://cheki-sochi.ru/city/${city.slug}` },
+          ],
+        },
+      ],
     };
     let schemaEl = document.getElementById('city-schema');
     if (!schemaEl) { schemaEl = document.createElement('script'); schemaEl.id = 'city-schema'; schemaEl.setAttribute('type', 'application/ld+json'); document.head.appendChild(schemaEl); }
@@ -338,6 +359,30 @@ const CityPage = () => {
               <p className="text-white/50">{d.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-gray-50 border-y-2 border-ink py-20">
+        <div className="container">
+          <h2 className="font-display font-700 uppercase text-4xl md:text-5xl mb-12">Частые вопросы</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              { q: `Как получить гостиничные чеки ${city.nameIn}?`, a: `Позвоните нам или заполните форму на сайте. Мы изготовим официальные гостиничные чеки ${city.nameIn} со всеми печатями и реквизитами по форме Госстандарта Минфина РФ и вышлем на email для проверки.` },
+              { q: 'Законно ли это?', a: 'Да. Документы оформляются от реальных гостиниц по утверждённой форме. Бухгалтерия вашей компании может в любой момент сделать запрос в гостиницу и получить подтверждение проживания.' },
+              { q: 'Сколько времени занимает изготовление?', a: 'От нескольких часов до 1 рабочего дня. После проверки документы отправляем экспресс-доставкой по всей России.' },
+              { q: `Для каких гостиниц ${city.nameIn} можно оформить чеки?`, a: `Для любой гостиницы ${city.nameIn}, России и стран СНГ. Подберём оптимальный вариант под вашу ценовую категорию и пожелания.` },
+              { q: 'Что входит в отчётные документы о проживании?', a: 'Гостиничный чек по форме 3-Г, кассовый чек или квитанция, все печати, подписи и реквизиты отеля. Бухгалтерия примет без вопросов.' },
+              { q: 'Как происходит оплата?', a: 'Предоплата за изготовление, остаток — после проверки готовых документов на email. Никаких скрытых платежей.' },
+            ].map((f) => (
+              <div key={f.q} className="border-2 border-ink p-7 hover:bg-acid transition-colors group">
+                <h3 className="font-display uppercase text-lg mb-3 flex items-start gap-3">
+                  <span className="text-electric group-hover:text-ink">Q</span> {f.q}
+                </h3>
+                <p className="text-ink/60 group-hover:text-ink/80 text-sm leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
