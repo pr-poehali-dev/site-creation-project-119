@@ -120,7 +120,7 @@ const Index = () => {
               <span className="text-electric">чеки</span>
             </h1>
             <p className="text-lg max-w-md mb-8 text-ink/70">
-              От любой гостиницы России и СНГ — со всеми печатями, подписями и реквизитами отеля. Законно, по форме Госстандарта.
+              Чеки гостиницы в Сочи и Краснодарском крае — со всеми печатями, подписями и реквизитами отеля. Законно, по форме Госстандарта.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
               <div className="border-2 border-ink px-5 py-3">
