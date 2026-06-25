@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
@@ -49,6 +49,51 @@ const CityPage = () => {
   const [form, setForm] = useState({ name: '', phone: '', email: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle');
   const [activeService, setActiveService] = useState<typeof services[0] | null>(null);
+
+  useEffect(() => {
+    if (!city) return;
+    const title = `Гостиничные чеки ${city.nameIn} — отчётные документы о проживании`;
+    const desc = `Гостиничные чеки ${city.nameIn} официально — со всеми печатями, подписями и реквизитами отеля. Отчётные документы о проживании по форме Госстандарта Минфина РФ. Тел: +7 (918) 464-18-00`;
+
+    document.title = title;
+
+    const setMeta = (name: string, content: string, prop = false) => {
+      const attr = prop ? 'property' : 'name';
+      let el = document.querySelector(`meta[${attr}="${name}"]`);
+      if (!el) { el = document.createElement('meta'); el.setAttribute(attr, name); document.head.appendChild(el); }
+      el.setAttribute('content', content);
+    };
+
+    setMeta('description', desc);
+    setMeta('keywords', `гостиничные чеки ${city.name}, чеки ${city.name}, отчётные документы о проживании ${city.name}, чеки за гостиницу ${city.name}, командировка ${city.name}`);
+    setMeta('og:title', title, true);
+    setMeta('og:description', desc, true);
+    setMeta('og:url', `https://cheki-sochi.ru/city/${city.slug}`, true);
+    setMeta('og:image', city.img, true);
+
+    let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!canonical) { canonical = document.createElement('link'); canonical.setAttribute('rel', 'canonical'); document.head.appendChild(canonical); }
+    canonical.href = `https://cheki-sochi.ru/city/${city.slug}`;
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: `Гостиничные чеки ${city.nameIn}`,
+      description: desc,
+      telephone: '+79184641800',
+      email: '6456609@list.ru',
+      address: { '@type': 'PostalAddress', streetAddress: city.address, addressLocality: city.name, addressRegion: 'Краснодарский край', addressCountry: 'RU' },
+      url: `https://cheki-sochi.ru/city/${city.slug}`,
+    };
+    let schemaEl = document.getElementById('city-schema');
+    if (!schemaEl) { schemaEl = document.createElement('script'); schemaEl.id = 'city-schema'; schemaEl.setAttribute('type', 'application/ld+json'); document.head.appendChild(schemaEl); }
+    schemaEl.textContent = JSON.stringify(schema);
+
+    return () => {
+      document.title = 'Гостиничные чеки в Сочи — отчётные документы о проживании | Чеки с подтверждением';
+      document.getElementById('city-schema')?.remove();
+    };
+  }, [city]);
 
   if (!city) {
     return (
