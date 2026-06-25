@@ -379,7 +379,7 @@ const Index = () => {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
         <a
           href="tel:+79184641800"
-          className="w-14 h-14 bg-electric text-white flex items-center justify-center shadow-lg hover:bg-ink transition-colors"
+          className="group w-14 h-14 bg-electric text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 hover:shadow-electric/40 transition-all duration-300"
           title="Позвонить"
         >
           <Icon name="Phone" size={22} />
@@ -388,7 +388,7 @@ const Index = () => {
           href="https://wa.me/79184641800"
           target="_blank"
           rel="noreferrer"
-          className="w-14 h-14 bg-green-500 text-white flex items-center justify-center shadow-lg hover:bg-green-600 transition-colors"
+          className="group w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 hover:shadow-green-400/40 transition-all duration-300"
           title="WhatsApp"
         >
           <Icon name="MessageCircle" size={22} />
@@ -397,7 +397,7 @@ const Index = () => {
           href="https://t.me/+79184641800"
           target="_blank"
           rel="noreferrer"
-          className="w-14 h-14 bg-sky-500 text-white flex items-center justify-center shadow-lg hover:bg-sky-600 transition-colors"
+          className="group w-14 h-14 bg-sky-500 text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 hover:shadow-sky-400/40 transition-all duration-300"
           title="Telegram"
         >
           <Icon name="Send" size={22} />
