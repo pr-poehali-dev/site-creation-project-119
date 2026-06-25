@@ -162,7 +162,7 @@ const Index = () => {
       </section>
 
       {/* Services */}
-      <section id="services" className="bg-ink text-white py-20 grain">
+      <section id="services" className="bg-gray-100 text-ink py-20 grain">
         <div className="container">
           <div className="inline-flex items-center gap-2 bg-acid text-ink px-4 py-1.5 font-display uppercase text-xs tracking-widest mb-6">
             <Icon name="LayoutGrid" size={14} /> Каталог услуг
@@ -170,13 +170,13 @@ const Index = () => {
           <h2 className="font-display font-700 uppercase text-4xl md:text-6xl mb-12">Что мы делаем</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s) => (
-              <Card key={s.title} className="bg-white/5 border-2 border-white/15 rounded-none p-7 hover:border-acid hover:-translate-y-1 transition-all group">
+              <Card key={s.title} className="bg-white border-2 border-ink/10 rounded-none p-7 hover:border-electric hover:-translate-y-1 transition-all group">
                 <div className="flex items-center justify-between mb-6">
-                  <Icon name={s.icon} size={32} className="text-acid" />
-                  <Icon name="ArrowUpRight" size={22} className="text-white/30 group-hover:text-acid transition-colors" />
+                  <Icon name={s.icon} size={32} className="text-electric" />
+                  <Icon name="ArrowUpRight" size={22} className="text-ink/20 group-hover:text-electric transition-colors" />
                 </div>
-                <h3 className="font-display uppercase text-xl mb-2">{s.title}</h3>
-                <p className="text-sm text-white/50">{s.desc}</p>
+                <h3 className="font-display uppercase text-xl mb-2 text-ink">{s.title}</h3>
+                <p className="text-sm text-ink/50">{s.desc}</p>
               </Card>
             ))}
           </div>
