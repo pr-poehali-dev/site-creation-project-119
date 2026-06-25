@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
 
-const HERO_IMG = 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/files/699d764a-4f00-4bda-9c64-2d6179cba7a5.jpg';
+const HERO_IMG = 'https://cdn.poehali.dev/projects/28c1b702-4327-4451-acb6-c0c2c2ba917e/bucket/79023b31-0fda-4e3f-b0be-d4da30b69963.png';
 
 const nav = [
   { label: 'О нас', href: '#about' },
