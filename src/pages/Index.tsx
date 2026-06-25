@@ -116,7 +116,7 @@ const Index = () => {
         <div className="container grid lg:grid-cols-2 gap-10 items-center py-16 lg:py-24 relative">
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 bg-acid text-ink px-4 py-1.5 font-display uppercase text-xs tracking-widest mb-6">
-              <Icon name="Sparkles" size={14} /> Сочи · официально
+              <Icon name="Sparkles" size={14} /> ЧЕКИ СОЧИ · ОФИЦИАЛЬНО
             </div>
             <h1 className="font-display font-700 uppercase leading-[0.9] text-6xl md:text-8xl mb-6">
               Гостиничные<br />
