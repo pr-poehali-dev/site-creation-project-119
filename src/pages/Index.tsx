@@ -117,8 +117,7 @@ const Index = () => {
             </div>
             <h1 className="font-display font-700 uppercase leading-[0.9] text-6xl md:text-8xl mb-6">
               Гостиничные<br />
-              <span className="text-electric">чеки</span><br />
-              <span className="text-4xl md:text-5xl">в Сочи</span>
+              <span className="text-electric">чеки</span>
             </h1>
             <p className="text-lg max-w-md mb-8 text-ink/70">
               Чеки гостиницы в Сочи и Краснодарском крае — со всеми печатями, подписями и реквизитами отеля. Законно, по форме Госстандарта.
