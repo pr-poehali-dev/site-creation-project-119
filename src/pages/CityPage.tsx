@@ -198,6 +198,18 @@ const CityPage = () => {
         </div>
       </div>
 
+      {/* SEO text */}
+      <section className="container py-16">
+        <div className="max-w-4xl">
+          <h2 className="font-display font-700 uppercase text-3xl mb-6">Гостиничные чеки {city.nameIn} — отчётные документы о проживании</h2>
+          <div className="prose prose-sm text-ink/70 space-y-4 leading-relaxed">
+            <p>Если вы находитесь в командировке {city.nameIn} и вам нужны <strong>гостиничные чеки</strong> для авансового отчёта — мы поможем. Наша компания изготавливает <strong>официальные отчётные документы о проживании</strong> от любой гостиницы России и СНГ.</p>
+            <p>Все документы оформляются строго по форме Госстандарта, утверждённой приказом Министерства финансов РФ. На чеках проставляются все необходимые печати, подписи и реквизиты отеля. Бухгалтерия вашей компании сможет в любой момент сделать запрос в гостиницу и получить подтверждение.</p>
+            <p><strong>Чеки за проживание {city.nameIn}</strong> необходимы командированным сотрудникам для возмещения расходов. Нередко документы теряются, не выдаются гостиницей или требуются постфактум — именно для таких случаев мы и работаем. Звоните: <a href="tel:+79184641800" className="text-electric font-semibold">+7 (918) 464-18-00</a>.</p>
+          </div>
+        </div>
+      </section>
+
       {/* Advantages */}
       <section id="about" className="container py-20">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
