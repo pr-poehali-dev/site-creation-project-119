@@ -81,7 +81,7 @@ const Index = () => {
       {/* Top bar */}
       <div className="bg-ink text-acid text-sm">
         <div className="container flex items-center justify-between py-2 font-display tracking-wide">
-          <span className="flex items-center gap-2"><Icon name="MapPin" size={14} /> Сочи и Краснодарский край</span>
+          <span className="flex items-center gap-2"><Icon name="MapPin" size={14} /> г.Сочи, ул.Горького 56А</span>
           <a href="tel:+79184641800" className="hover:text-white transition-colors flex items-center gap-2">
             <Icon name="Phone" size={14} /> +7 (918) 464-18-00
           </a>
@@ -251,6 +251,7 @@ const Index = () => {
             <div className="space-y-3 font-display uppercase text-sm tracking-wide">
               <a href="tel:+79184641800" className="flex items-center gap-3"><Icon name="Phone" size={18} className="text-acid" /> +7 (918) 464-18-00</a>
               <a href="mailto:6456609@list.ru" className="flex items-center gap-3"><Icon name="Mail" size={18} className="text-acid" /> 6456609@list.ru</a>
+              <span className="flex items-center gap-3"><Icon name="MapPin" size={18} className="text-acid" /> г.Сочи, ул.Горького 56А</span>
             </div>
           </div>
           <form onSubmit={submit} className="bg-[#FAF9F2] text-ink p-8 border-2 border-ink">
@@ -353,6 +354,7 @@ const Index = () => {
             <ul className="space-y-2 text-sm text-white/60">
               <li><a href="tel:+79184641800" className="hover:text-white">+7 (918) 464-18-00</a></li>
               <li><a href="mailto:6456609@list.ru" className="hover:text-white">6456609@list.ru</a></li>
+              <li className="flex items-center gap-2"><Icon name="MapPin" size={14} /> г.Сочи, ул.Горького 56А</li>
             </ul>
             <div className="flex gap-3 mt-4">
               <a href="https://wa.me/79184641800" target="_blank" rel="noreferrer" className="border border-white/30 w-10 h-10 flex items-center justify-center hover:bg-acid hover:text-ink hover:border-acid transition-colors">
