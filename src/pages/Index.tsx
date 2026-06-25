@@ -272,7 +272,7 @@ const Index = () => {
 
       {/* Cities */}
       <section className="container py-20">
-        <h2 className="font-display font-700 uppercase text-3xl md:text-5xl mb-8">Работаем в регионах РФ</h2>
+        <h2 className="font-display font-700 uppercase text-3xl md:text-5xl mb-8">Работаем по Краснодарскому краю и регионам РФ</h2>
         <div className="flex flex-wrap gap-3">
           {cities.map((c) => (
             <span key={c} className="border-2 border-ink px-4 py-2 font-display uppercase text-sm hover:bg-electric hover:text-white hover:border-electric transition-colors cursor-pointer">{c}</span>
