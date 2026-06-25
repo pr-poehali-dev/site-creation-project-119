@@ -48,11 +48,30 @@ const blog = [
 
 const cities = ['Сочи', 'Абакан', 'Адлер', 'Анапа', 'Краснодар', 'Туапсе', 'Геленджик', 'Новороссийск', 'Майкоп', 'Армавир', 'Ростов-на-Дону', 'Ставрополь'];
 
+const EMAIL_URL = 'https://functions.poehali.dev/c20e61cd-6d1d-488b-8ae0-5ff678e6ac49';
+
 const Index = () => {
   const [form, setForm] = useState({ name: '', phone: '', email: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle');
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus('loading');
+    try {
+      const res = await fetch(EMAIL_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus('ok');
+        setForm({ name: '', phone: '', email: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -231,9 +250,11 @@ const Index = () => {
                 <label className="font-display uppercase text-xs tracking-wide">Ваш email</label>
                 <Input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="rounded-none border-2 border-ink mt-1 h-12" placeholder="mail@example.com" />
               </div>
-              <Button type="submit" className="w-full bg-ink hover:bg-electric text-white rounded-none h-12 font-display uppercase tracking-wide">
-                Отправить
+              <Button type="submit" disabled={status === 'loading' || status === 'ok'} className="w-full bg-ink hover:bg-electric text-white rounded-none h-12 font-display uppercase tracking-wide disabled:opacity-60">
+                {status === 'loading' ? 'Отправляем...' : status === 'ok' ? 'Заявка отправлена ✓' : 'Отправить'}
               </Button>
+              {status === 'ok' && <p className="text-sm text-green-700 font-display">Мы свяжемся с вами в течение 15 минут!</p>}
+              {status === 'error' && <p className="text-sm text-red-600 font-display">Ошибка отправки. Позвоните нам напрямую.</p>}
               <p className="text-xs text-ink/50">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
             </div>
           </form>
