@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -53,6 +54,7 @@ const EMAIL_URL = 'https://functions.poehali.dev/c20e61cd-6d1d-488b-8ae0-5ff678e
 const Index = () => {
   const [form, setForm] = useState({ name: '', phone: '', email: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle');
+  const [activeService, setActiveService] = useState<typeof services[0] | null>(null);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -190,14 +192,11 @@ const Index = () => {
           <h2 className="font-display font-700 uppercase text-4xl md:text-6xl mb-12">Что мы делаем</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {services.map((s) => (
-              <Card key={s.title} className="bg-white border-2 border-ink/10 rounded-none overflow-hidden hover:border-electric hover:-translate-y-1 transition-all group">
-                <div className="overflow-hidden h-44 bg-gray-50">
-                  <img src={s.img} alt={s.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
+              <Card key={s.title} onClick={() => setActiveService(s)} className="bg-white border-2 border-ink/10 rounded-none overflow-hidden hover:border-electric hover:-translate-y-1 transition-all group cursor-pointer">
                 <div className="p-7">
                   <div className="flex items-center justify-between mb-3">
                     <Icon name={s.icon} size={26} className="text-electric" />
-                    <Icon name="ArrowUpRight" size={20} className="text-ink/20 group-hover:text-electric transition-colors" />
+                    <Icon name="Expand" size={20} className="text-ink/20 group-hover:text-electric transition-colors" />
                   </div>
                   <h3 className="font-display uppercase text-xl mb-2 text-ink">{s.title}</h3>
                   <p className="text-sm text-ink/50">{s.desc}</p>
@@ -205,6 +204,23 @@ const Index = () => {
               </Card>
             ))}
           </div>
+
+          <Dialog open={!!activeService} onOpenChange={() => setActiveService(null)}>
+            <DialogContent className="max-w-lg p-0 rounded-none border-2 border-ink overflow-hidden">
+              {activeService && (
+                <>
+                  <img src={activeService.img} alt={activeService.title} className="w-full object-cover max-h-80" />
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Icon name={activeService.icon} size={24} className="text-electric" />
+                      <h3 className="font-display uppercase text-xl">{activeService.title}</h3>
+                    </div>
+                    <p className="text-ink/60">{activeService.desc}</p>
+                  </div>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
 
